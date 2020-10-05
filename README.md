@@ -29,6 +29,10 @@ scoop install allure
 npm install
 ```
 
+Download [web driver binaries](http://chromedriver.storage.googleapis.com/index.html)
+
+Unarchive and put to ```node_modules/.bin```
+
 start SUT 
 * ptm-server, description in documentation:
    [ptm-server/README](https://github.com/medvecky/ptm-server/blob/master/README.md)
