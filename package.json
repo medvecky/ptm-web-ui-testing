@@ -1,0 +1,26 @@
+{
+  "name": "ptm-web-ui-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/cucumber-js -p default"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/cucumber": "^6.0.1",
+    "@types/selenium-webdriver": "^4.0.9",
+    "allure-cucumberjs": "^2.0.0-beta.8",
+    "axios": "^0.20.0",
+    "cucumber": "^7.0.0-rc.0",
+    "cucumber-pretty": "^6.0.0",
+    "cucumber-tsflow": "^3.4.1",
+    "hamjest": "^3.7.1",
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
