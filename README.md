@@ -1,4 +1,4 @@
-# ptm-server-integration-testing
+# ptm-web-ui-testing
 UI tests suite for [ptm-react-web-client](https://github.com/medvecky/ptm-react-web-client)
 
 ## Project setup 
