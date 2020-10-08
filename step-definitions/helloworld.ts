@@ -1,5 +1,5 @@
 import {binding, when} from "cucumber-tsflow/dist";
-import {assertThat, is} from "hamjest";
+import {assertThat, is, not} from "hamjest";
 import {Builder, By, Key, until} from 'selenium-webdriver';
 
 @binding()
@@ -15,14 +15,11 @@ export class HelloWorld {
             let driver = await new Builder().forBrowser('chrome').build();
             try {
                 // Navigate to Url
-                await driver.get('https://www.google.com');
+                await driver.get('http://localhost');
 
-                // Enter text "cheese" and perform keyboard action "Enter"
-                await driver.findElement(By.name('q')).sendKeys('cheese', Key.ENTER);
+                let signInButton = await driver.findElement(By.xpath('//button[text()="Sign In"]'));
 
-                let firstResult = await driver.wait(until.elementLocated(By.css('h3>div')), 10000);
-
-                console.log(await firstResult.getAttribute('textContent'));
+                assertThat('Sign In button not present', signInButton, is(not(undefined)))
             }
             finally{
                 await driver.quit();
