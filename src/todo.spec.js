@@ -1,18 +1,38 @@
 
-describe('angularjs homepage todo list', function() {
-    it('should add a todo', function() {
-        browser.get('https://angularjs.org');
-
-        element(by.model('todoList.todoText')).sendKeys('write first protractor test');
-        element(by.css('[value="add"]')).click();
-
-        var todoList = element.all(by.repeater('todo in todoList.todos'));
-        expect(todoList.count()).toEqual(3);
-        expect(todoList.get(2).getText()).toEqual('write first protractor test');
-
-        // You wrote your first test, cross it off the list
-        todoList.get(2).element(by.css('input')).click();
-        var completedAmount = element.all(by.css('.done-true'));
-        expect(completedAmount.count()).toEqual(2);
+describe('Sign In page', function() {
+    beforeAll(() => {
+        browser.waitForAngularEnabled(false);
+        browser.get('http://localhost');
     });
+
+    it('should present Sign In button', function() {
+        expect(element(by.css('button[type="submit"]')).getText()).toEqual('Sign In');
+    });
+
+    it('should present Email label', function() {
+        expect(element(by.css('label[for="formEmail"]')).getText()).toEqual('Email');
+    });
+
+    it('should present Email field', function() {
+        expect(element(by.css('input[placeholder="Enter email"]')).isPresent()).toBe(true);
+    });
+
+    it('should present Password label', function() {
+        expect(element(by.css('label[for="formPassword"]')).getText()).toEqual('Password');
+    });
+
+    it('should present Password field', function() {
+        expect(element(by.css('input[placeholder="password"]')).isPresent()).toBe(true);
+    });
+
+    it('should login as entered correct credentials', function () {
+        element(by.css('input[placeholder="Enter email"]')).sendKeys('testuser1@gmail.com');
+        element(by.css('input[placeholder="password"]')).sendKeys('Password_12345');
+        element(by.css('button[type="submit"]')).click();
+        const EC = protractor.ExpectedConditions;
+        let openLabel = $$('span[class="badge badge-info"]').first();
+        EC.presenceOf(openLabel);
+        browser.wait(EC.presenceOf(openLabel), 5000,'Element taking too long to appear in the DOM');
+        expect(openLabel.getText()).toEqual('OPEN');
+    })
 });
