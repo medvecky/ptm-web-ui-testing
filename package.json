@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "protractor conf.js"
+    "build": "tsc",
+    "test": "protractor js-files/conf.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jest/globals": "^26.5.2"
+    "@types/jasmine": "^3.5.14",
+    "@types/jasminewd2": "^2.0.8",
+    "@types/node": "^14.11.8",
+    "jasmine": "^3.6.1",
+    "protractor": "^7.0.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
   },
-  "devDependencies": {
-    "jest": "^26.5.2"
-  }
+  "devDependencies": {}
 }

@@ -11,17 +11,18 @@ start SUT
 * ptm-react-web-client, description in documentation:
   [ptm-react-web-client/README](https://github.com/medvecky/ptm-react-web-client/blob/master/README.md)
   
-Install and start protractor
+Install dependencies
 
 ```
-npm install -g protractor
-webdriver-manager update
-webdriver-manager start
+npm install
+npm install -g typescript
+node_modules/.bin/webdriver-manager update
 ```   
 
 * run tests 
 
     ```bash
+      npm run-script build 
       npm test
       #Show allure reports  
       allure serve ./out/allure-results

@@ -1,3 +1,4 @@
+import {$$, browser, by, element, protractor} from "protractor";
 
 describe('Sign In page', function() {
     beforeAll(() => {
@@ -32,7 +33,7 @@ describe('Sign In page', function() {
         const EC = protractor.ExpectedConditions;
         let openLabel = $$('span[class="badge badge-info"]').first();
         EC.presenceOf(openLabel);
-        browser.wait(EC.presenceOf(openLabel), 5000,'Element taking too long to appear in the DOM');
+        browser.wait(EC.presenceOf(openLabel), 10000,'Element taking too long to appear in the DOM');
         expect(openLabel.getText()).toEqual('OPEN');
     })
 });
