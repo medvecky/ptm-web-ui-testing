@@ -13,17 +13,15 @@ start SUT
   
 Install dependencies
 
-```
+```bash
 npm install
-npm install -g typescript
-node_modules/.bin/webdriver-manager update
+npm run webdriver-update
 ```   
 
-* run tests 
+run tests 
 
-    ```bash
-      npm run-script build 
-      npm test
-      #Show allure reports  
-      allure serve ./out/allure-results
-    ```
+```bash
+  npm test
+  #Show allure reports  
+  allure serve ./out/allure-results
+```
