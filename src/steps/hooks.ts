@@ -7,14 +7,8 @@ Before(async () => {
     await browser.get('http://localhost');
 });
 
-//
-// After(async (scenario) => {
-//     // This hook will be executed before scenarios tagged with @foo
-//     console.log("Test is completed");
-//     if (scenario.result.status === Status.FAILED) {
-//         //code to take screesnhot
-//         const screenshot = await browser.takeScreenshot();
-//
-//         attach(screenshot, "image/png");
-//     }
-// });
+
+After(async (scenario) => {
+    await browser.executeScript('window.sessionStorage.clear();');
+    await browser.executeScript('window.localStorage.clear();');
+});

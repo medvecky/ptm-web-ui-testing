@@ -1,6 +1,7 @@
-import {browser, by, element, ElementFinder, promise, protractor} from "protractor";
+import {browser, by, element, ElementFinder, promise, protractor, WebElementPromise} from "protractor";
+import {waitForElement} from "../steps/CommonFunctions";
 
-export class homePage {
+export class HomePage {
     private clearFilterButton:ElementFinder;
 
     constructor() {
@@ -11,8 +12,7 @@ export class homePage {
         return this.clearFilterButton.isPresent();
     }
 
-    waitForElement(element: ElementFinder ) {
-        const EC = protractor.ExpectedConditions;
-        browser.wait(EC.presenceOf(element), 10000,'Element taking too long to appear in the DOM');
+    waitForClearFilterButton() {
+        return waitForElement(this.clearFilterButton);
     }
 }

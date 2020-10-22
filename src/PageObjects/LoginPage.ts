@@ -1,4 +1,5 @@
 import {by, element, ElementFinder, promise} from "protractor";
+import {waitForElement} from "../steps/CommonFunctions";
 
 export class LoginPage {
 
@@ -7,14 +8,16 @@ export class LoginPage {
     private emailInputField: ElementFinder;
     private passwordLabel: ElementFinder;
     private passwordInputFiled: ElementFinder;
+    private errorMessage: ElementFinder;
 
 
     constructor() {
         this.signInButton = element(by.css('button[type="submit"]'));
         this.emailLabel = element(by.css('label[for="formEmail"]'));
-        this.emailInputField = element(by.css('input[placeholder="Enter email"]'));
+        this.emailInputField = element(by.id('formEmail'));
         this.passwordLabel = element(by.css('label[for="formPassword"]'));
-        this.passwordInputFiled = element(by.css('input[placeholder="password"]'));
+        this.passwordInputFiled = element(by.id('formPassword'));
+        this.errorMessage = element(by.css('div[class="card text-danger border-danger"] div[class="card-body"]'));
     }
 
     getSubmitButtonText(): promise.Promise<string> {
@@ -54,7 +57,7 @@ export class LoginPage {
     }
 
     async setPasswordText(password:string) {
-        await this.emailInputField.sendKeys(password);
+        await this.passwordInputFiled.sendKeys(password);
     }
 
     async pressSubmitButton() {
@@ -65,5 +68,32 @@ export class LoginPage {
         await this.setEmailText(email);
         await this.setPasswordText(password);
         await this.pressSubmitButton();
+    }
+
+  getEmailRequiredAttribute(): promise.Promise<string> {
+        return this.emailInputField.getAttribute('required');
+    }
+
+    getEmailTypeAttribute(): promise.Promise<string> {
+        return this.emailInputField.getAttribute('type');
+    }
+    getPasswordRequiredAttribute(): promise.Promise<string> {
+        return this.passwordInputFiled.getAttribute('required');
+    }
+
+    getPasswordTypeAttribute(): promise.Promise<string> {
+        return this.passwordInputFiled.getAttribute('type');
+    }
+
+    waitForErrorMessage() {
+        return waitForElement(this.errorMessage);
+    }
+
+    getErrorMessageText(): promise.Promise<string> {
+        return this.errorMessage.getText();
+    }
+
+    isErrorMessagePresent(): promise.Promise<boolean> {
+        return this.errorMessage.isPresent();
     }
 }
