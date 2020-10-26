@@ -1,6 +1,6 @@
 Feature: Login
 
-  Scenario: All Login form elements present
+  Scenario: All Sign In form elements present
     Then Sign In button present
     And Sign In button has text "Sign In"
     And Email label present
@@ -10,7 +10,8 @@ Feature: Login
     And Password label has text "Password"
     And Password input field present
 
-  Scenario: User can log in to the system with correct credentials
+  Scenario: User can sing in to the system with correct credentials
+    Given user with username: "testuser1@gmail.com" password: "Password_12345"
     When user tries to login with "testuser1@gmail.com" "Password_12345"
     And user waits for home page would load
     Then the home page has been loaded
@@ -23,7 +24,7 @@ Feature: Login
     Then password has type attribute password
     And password has required attribute
 
-  Scenario: the user gets error whet tries to log in with invalid credentials
+  Scenario: the user gets error whet tries to sign in with invalid credentials
     When user tries to login with "testuser1@gmail.com" "WrongPassword_12345"
     And waits for error message
     Then error message presents

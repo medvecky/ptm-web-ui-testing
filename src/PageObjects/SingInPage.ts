@@ -1,7 +1,7 @@
 import {by, element, ElementFinder, promise} from "protractor";
 import {waitForElement} from "../steps/CommonFunctions";
 
-export class LoginPage {
+export class SingInPage {
 
     private signInButton: ElementFinder;
     private emailLabel: ElementFinder;

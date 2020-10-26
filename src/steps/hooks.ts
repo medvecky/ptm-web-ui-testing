@@ -1,5 +1,9 @@
-import {After, Before, Status} from "cucumber";
+import {After, Before} from "cucumber";
 import {browser} from "protractor";
+import {deleteUserWithContext} from "./CommonFunctions";
+import {SharedContext} from "./sharedContext";
+
+
 
 
 Before(async () => {
@@ -11,4 +15,8 @@ Before(async () => {
 After(async (scenario) => {
     await browser.executeScript('window.sessionStorage.clear();');
     await browser.executeScript('window.localStorage.clear();');
+
+    if (SharedContext.accessToken) {
+        await deleteUserWithContext(SharedContext.accessToken);
+    }
 });
