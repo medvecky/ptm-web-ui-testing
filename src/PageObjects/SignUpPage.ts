@@ -22,7 +22,7 @@ export class SignUpPage {
         this.errorMessage = element(by.css('div[class="card text-danger border-danger"] div[class="card-body"]'));
     }
 
-    waitForSignInButton() {
+    waitForSignUpButton() {
         return waitForElement(this.signUpButton);
     }
 
@@ -40,6 +40,37 @@ export class SignUpPage {
 
     isConfirmPasswordLabelPresent(): promise.Promise<boolean> {
         return this.confirmPasswordLabel.isPresent();
+    }
+
+    getPasswordRequiredAttribute(): promise.Promise<string> {
+        return this.confirmPasswordInputField.getAttribute('required');
+    }
+
+    getPasswordTypeAttribute(): promise.Promise<string> {
+        return this.confirmPasswordInputField.getAttribute('type');
+    }
+
+    async setEmailText(email: string) {
+        await this.emailInputField.sendKeys(email);
+    }
+
+    async setPasswordText(password: string) {
+        await this.passwordInputFiled.sendKeys(password);
+    }
+
+    async setConfirmPasswordText(password: string) {
+        await this.confirmPasswordInputField.sendKeys(password);
+    }
+
+    async pressSubmitButton() {
+        await this.signUpButton.click();
+    }
+
+    async signUp(email: string, password: string) {
+        await this.setEmailText(email);
+        await this.setPasswordText(password);
+        await this.setConfirmPasswordText(password);
+        await this.pressSubmitButton();
     }
 
 }

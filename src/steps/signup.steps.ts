@@ -1,8 +1,10 @@
 import {Given, Then, When} from "cucumber";
 import {NavBarNotSignedIn} from "../PageObjects/NavBarNotSignedIn";
 import {SignUpPage} from "../PageObjects/SignUpPage";
-let chai = require('chai').use(require('chai-as-promised'));
-let expect = chai.expect;
+import {getTokenFromBrowserStorage} from "./CommonFunctions";
+import {SharedContext} from "./sharedContext";
+const chai = require('chai').use(require('chai-as-promised'));
+const expect = chai.expect;
 
 const navBar = new NavBarNotSignedIn();
 const signUpPage = new SignUpPage();
@@ -20,7 +22,7 @@ Then('sign up button present', async () =>  {
 });
 
 When('user waits for sign up button',  async() => {
-  return signUpPage.waitForSignInButton();
+  return signUpPage.waitForSignUpButton();
 });
 
 Then('Confirm password label has text {string}', async (expectedLabelText: string) => {
@@ -32,5 +34,41 @@ Then('Confirm password input field present', async () => {
 });
 
 Then('Confirm password label present', async () =>  {
-   expect(await signUpPage.isConfirmPasswordInputFieldPresent()).to.equal(true);
+   expect(await signUpPage.isConfirmPasswordLabelPresent()).to.equal(true);
 });
+
+Then('confirm password has type attribute password', async () => {
+    expect(await signUpPage.getPasswordTypeAttribute()).to.equal('password');
+});
+
+Then('confirm password has required attribute', async () => {
+    expect(await signUpPage.getPasswordRequiredAttribute()).to.equal('true');
+});
+
+When('user tries to sing up with {string} {string}', async (email: string, password: string) =>  {
+    return signUpPage.signUp(email, password);
+});
+
+Then('access token presents in browser storage', async () => {
+    const token = await getTokenFromBrowserStorage();
+    expect(token).to.not.be.undefined;
+    // @ts-ignore
+    SharedContext.accessToken = token;
+});
+
+When('user sets email to {string}', async (email: string) => {
+    await signUpPage.setEmailText(email);
+});
+
+When('user sets password to {string}', async (password: string) => {
+   await signUpPage.setPasswordText(password);
+});
+
+When('user sets confirm password to {string}', async (password: string) =>  {
+    await signUpPage.setConfirmPasswordText(password);
+});
+
+When('user clicks on submit button', async () => {
+    await signUpPage.pressSubmitButton();
+});
+

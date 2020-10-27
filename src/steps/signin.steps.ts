@@ -1,53 +1,53 @@
 import {Given, Then, When} from "cucumber";
-import {SingInPage} from "../PageObjects/SingInPage";
+import {SignInPage} from "../PageObjects/SignInPage";
 import {HomePage} from "../PageObjects/HomePage";
 import instance from './axios.config';
 import {SharedContext} from "./sharedContext";
 
-let chai = require('chai').use(require('chai-as-promised'));
-let expect = chai.expect;
+const chai = require('chai').use(require('chai-as-promised'));
+const expect = chai.expect;
 const axios = instance;
 
-const singInPage = new SingInPage();
+const signInPage = new SignInPage();
 const homePage = new HomePage();
 
 Then('Sign In button present', async () => {
-    expect(await singInPage.isSignInButtonPresent()).to.equal(true);
+    expect(await signInPage.isSignInButtonPresent()).to.equal(true);
 });
 
 Then('Sign In button has text {string}', async (expectedButtonText: string) => {
-    expect(await singInPage.getSubmitButtonText()).to.equal(expectedButtonText);
+    expect(await signInPage.getSubmitButtonText()).to.equal(expectedButtonText);
 });
 
 Then('Email label present', async () => {
-    expect(await singInPage.isEmailLabelPresent()).to.equal(true);
+    expect(await signInPage.isEmailLabelPresent()).to.equal(true);
 });
 
 Then('Email label has text {string}', async (expectedLabelText: string) => {
-    expect(await singInPage.getEmailLabelText()).to.equal(expectedLabelText)
+    expect(await signInPage.getEmailLabelText()).to.equal(expectedLabelText)
 });
 
 
 Then('Email input field present', async () => {
-    expect(await singInPage.isEmailInputFieldPresent()).to.equal(true);
+    expect(await signInPage.isEmailInputFieldPresent()).to.equal(true);
 });
 
 
 Then('Password label present', async () => {
-    expect(await singInPage.isPasswordLabelPresent()).to.equal(true);
+    expect(await signInPage.isPasswordLabelPresent()).to.equal(true);
 });
 
 
 Then('Password label has text {string}', async (expectedLabelText) => {
-    expect(await singInPage.getPasswordLabelText()).to.equal(expectedLabelText);
+    expect(await signInPage.getPasswordLabelText()).to.equal(expectedLabelText);
 });
 
 Then('Password input field present', async () => {
-    expect(await singInPage.isPasswordInputFieldPresent()).to.equal(true);
+    expect(await signInPage.isPasswordInputFieldPresent()).to.equal(true);
 });
 
 When('user tries to login with {string} {string}', async (email: string, password: string) => {
-    await singInPage.signIn(email, password);
+    await signInPage.signIn(email, password);
 });
 
 When('user waits for home page would load', () => {
@@ -59,31 +59,31 @@ Then('the home page has been loaded', async () => {
 });
 
 Then('email has type attribute email', async () => {
-    expect(await singInPage.getEmailTypeAttribute()).to.equal('email');
+    expect(await signInPage.getEmailTypeAttribute()).to.equal('email');
 });
 
 Then('email has required attribute', async () => {
-    expect(await singInPage.getEmailRequiredAttribute()).to.equal('true');
+    expect(await signInPage.getEmailRequiredAttribute()).to.equal('true');
 });
 
 Then('password has type attribute password', async () => {
-    expect(await singInPage.getPasswordTypeAttribute()).to.equal('password');
+    expect(await signInPage.getPasswordTypeAttribute()).to.equal('password');
 });
 
 Then('password has required attribute', async () => {
-    expect(await singInPage.getPasswordRequiredAttribute()).to.equal('true');
+    expect(await signInPage.getPasswordRequiredAttribute()).to.equal('true');
 });
 
 Then('error message presents', async () => {
-    expect(await singInPage.isErrorMessagePresent()).to.equal(true);
+    expect(await signInPage.isErrorMessagePresent()).to.equal(true);
 });
 
 Then('error message text is {string}', async (expectedErrorMessage) => {
-    expect(await singInPage.getErrorMessageText()).to.equal(expectedErrorMessage);
+    expect(await signInPage.getErrorMessageText()).to.equal(expectedErrorMessage);
 });
 
 When('waits for error message', () => {
-    return singInPage.waitForErrorMessage();
+    return signInPage.waitForErrorMessage();
 });
 
 Given('user with username: {string} password: {string}',

@@ -1,4 +1,4 @@
-import {browser, ElementFinder, protractor} from "protractor";
+import {browser, ElementFinder, promise, protractor} from "protractor";
 import instance from './axios.config';
 
 const axios = instance;
@@ -39,5 +39,16 @@ export function deleteUserWithContext(accessToken:string) {
         })
         .catch(function (error) {
         });
+}
+
+export function getTokenFromBrowserStorage(): promise.Promise<unknown> {
+    return browser.executeScript("return window.localStorage.getItem('token');");
+}
+
+
+export function hasCssClass (element: ElementFinder, cssClass: string): promise.Promise<boolean> {
+    return element.getAttribute('class').then(function (classes) {
+        return classes.split(' ').indexOf(cssClass) !== -1;
+    });
 }
 
