@@ -3,6 +3,7 @@ import {SignInPage} from "../PageObjects/SignInPage";
 import {HomePage} from "../PageObjects/HomePage";
 import instance from './axios.config';
 import {SharedContext} from "./sharedContext";
+import {createUserUsingApi} from "./CommonFunctions";
 
 const chai = require('chai').use(require('chai-as-promised'));
 const expect = chai.expect;
@@ -87,24 +88,7 @@ When('waits for error message', () => {
 });
 
 Given('user with username: {string} password: {string}',
-    (username: string, password: string) => {
-        return axios.post('/auth/signup', {
-            username: username,
-            password: password
-        })
-            .then(function (response) {
-                return axios.post('/auth/signin', {
-                    username: username,
-                    password: password
-                })
-                    .then(function (response) {
-                        SharedContext.accessToken = response.data.accessToken;
-                    })
-                    .catch(function (error) {
-                        console.log("User not creates, ", error)
-                    });
-            })
-            .catch(function (error) {
-            });
+    async (username: string, password: string) => {
+        return createUserUsingApi(username, password);
     });
 
