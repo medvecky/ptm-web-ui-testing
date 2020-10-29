@@ -78,12 +78,20 @@ export class SignInPage {
         return this.emailInputField.getAttribute('type');
     }
 
+    getEmailPlaceHolderText(): promise.Promise<string> {
+        return this.emailInputField.getAttribute('placeholder');
+    }
+
     getPasswordRequiredAttribute(): promise.Promise<string> {
         return this.passwordInputFiled.getAttribute('required');
     }
 
     getPasswordTypeAttribute(): promise.Promise<string> {
         return this.passwordInputFiled.getAttribute('type');
+    }
+
+    getPasswordPlaceholderText(): promise.Promise<string> {
+        return this.passwordInputFiled.getAttribute('placeholder');
     }
 
     waitForErrorMessage() {

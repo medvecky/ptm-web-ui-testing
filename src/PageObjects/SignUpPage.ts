@@ -50,6 +50,10 @@ export class SignUpPage {
         return this.confirmPasswordInputField.getAttribute('type');
     }
 
+    getPasswordPlaceholderText(): promise.Promise<string> {
+        return this.confirmPasswordInputField.getAttribute('placeholder');
+    }
+
     async setEmailText(email: string) {
         await this.emailInputField.sendKeys(email);
     }

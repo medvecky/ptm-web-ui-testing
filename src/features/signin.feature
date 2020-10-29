@@ -6,9 +6,11 @@ Feature: Login
     And Email label present
     And Email label has text "Email"
     And Email input field present
+    And Email input field has placeholder "Enter email"
     And Password label present
     And Password label has text "Password"
     And Password input field present
+    And Password input field has placeholder "password"
 
   Scenario: User can sing in to the system with correct credentials
     Given user with username: "testuser1@gmail.com" password: "Password_12345"

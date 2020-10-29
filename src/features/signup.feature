@@ -11,12 +11,15 @@ Feature:
     And Email label present
     And Email label has text "Email"
     And Email input field present
+    And Email input field has placeholder "Enter email"
     And Password label present
     And Password label has text "Password"
     And Password input field present
+    And Password input field has placeholder "password"
     And Confirm password label present
     And Confirm password label has text "Confirm password"
     And Confirm password input field present
+    And Confirm password input field has placeholder "confirm password"
 
   Scenario: Email input field has correct attributes
     Then email has type attribute email

@@ -72,3 +72,7 @@ When('user clicks on submit button', async () => {
     await signUpPage.pressSubmitButton();
 });
 
+Then('Confirm password input field has placeholder {string}', async (expectedPlaceholder: string) => {
+   expect(await signUpPage.getPasswordPlaceholderText()).to.equal(expectedPlaceholder);
+});
+

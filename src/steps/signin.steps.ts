@@ -92,3 +92,12 @@ Given('user with username: {string} password: {string}',
         return createUserUsingApi(username, password);
     });
 
+Then('Email input field has placeholder {string}', async (expectedPlaceholder: string) => {
+    expect(await signInPage.getEmailPlaceHolderText()).to.equal(expectedPlaceholder);
+});
+
+Then('Password input field has placeholder {string}', async (expectedPlaceholder: string) =>  {
+    expect (await signInPage.getPasswordPlaceholderText()).to.equal(expectedPlaceholder);
+});
+
+
