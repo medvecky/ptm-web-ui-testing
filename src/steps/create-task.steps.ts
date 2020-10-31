@@ -40,10 +40,42 @@ Then('title input field has placeholder text {string}', async (expectedPlacehold
 });
 
 Then('description label is present', async () => {
-    return 'pending';
+    expect(await createTaskPage.isDescriptionLabelPresent()).to.equal(true);
 });
 
 Then('description label has text {string}', async (expectedLabelText: string) => {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+   expect(await createTaskPage.getDescriptionLabelText()).to.equal(expectedLabelText);
 });
+
+Then('description input field is present', async () => {
+    expect(await createTaskPage.isDescriptionInputFieldPresent()).to.equal(true);
+});
+
+Then('description input field has placeholder text {string}', async (expectedPlaceholderText: string) => {
+    expect(await createTaskPage.getDescriptionInputFieldPlaceholderText()).to.equal(expectedPlaceholderText);
+});
+
+Then('project label present', async () => {
+    expect(await createTaskPage.isProjectLabelPresent()).to.equal(true);
+});
+
+Then('project label has text {string}', async (expectedLabelText: string) => {
+   expect(await createTaskPage.getProjectLabelText()).to.equal(expectedLabelText);
+});
+
+Then('project select field present', async () => {
+   expect(await createTaskPage.isProjectSelectFieldPresent()).to.equal(true);
+});
+
+Then('project select has selected value {string}', async (expectedSelectedValue: string) => {
+   expect(await createTaskPage.getProjectSelectCurrentValue()).to.equal(expectedSelectedValue);
+});
+
+Then('title input field has required attribute', async () => {
+    expect(await createTaskPage.getTitleRequiredAttribute()).to.equal('true');
+});
+
+Then('description input field has required attribute', async () =>  {
+    expect(await createTaskPage.getDescriptionRequiredAttribute()).to.equal('true');
+});
+

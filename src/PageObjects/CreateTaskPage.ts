@@ -47,4 +47,40 @@ export class CreateTaskPage {
    isDescriptionLabelPresent(): promise.Promise<boolean> {
         return this.descriptionLabel.isPresent();
    }
+
+   getDescriptionLabelText(): promise.Promise<string> {
+        return this.descriptionLabel.getText();
+   }
+
+   isDescriptionInputFieldPresent(): promise.Promise<boolean> {
+        return this.descriptionInputFiled.isPresent();
+   }
+
+   getDescriptionInputFieldPlaceholderText(): promise.Promise<string> {
+        return this.descriptionInputFiled.getAttribute('placeholder');
+   }
+
+   isProjectLabelPresent(): promise.Promise<boolean> {
+        return this.projectLabel.isPresent();
+   }
+
+   getProjectLabelText(): promise.Promise<string> {
+        return this.projectLabel.getText();
+   }
+
+   isProjectSelectFieldPresent(): promise.Promise<boolean> {
+        return this.projectSelectField.isPresent();
+   }
+
+   getProjectSelectCurrentValue(): promise.Promise<string> {
+        return this.projectSelectField.getText();
+   }
+
+   getTitleRequiredAttribute(): promise.Promise<string> {
+        return this.titleInputField.getAttribute('required');
+   }
+
+   getDescriptionRequiredAttribute(): promise.Promise<string> {
+        return this.descriptionInputFiled.getAttribute('required');
+   }
 }
