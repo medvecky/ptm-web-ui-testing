@@ -83,4 +83,22 @@ export class CreateTaskPage {
    getDescriptionRequiredAttribute(): promise.Promise<string> {
         return this.descriptionInputFiled.getAttribute('required');
    }
+
+   setTitle(title: string): promise.Promise<void>  {
+       return this.titleInputField.sendKeys(title);
+   }
+
+   setDescription(description: string): promise.Promise<void> {
+        return this.descriptionInputFiled.sendKeys(description);
+   }
+
+   pressCreateTaskButton(): promise.Promise<void> {
+        return this.createTaskButton.click();
+   }
+
+   async createTask(title: string, description: string): Promise<void> {
+        await this.setTitle(title);
+        await this.setDescription(description);
+        return this.pressCreateTaskButton();
+   }
 }

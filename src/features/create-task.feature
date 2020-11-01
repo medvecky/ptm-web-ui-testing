@@ -24,3 +24,6 @@ Feature: Create task
   Scenario: Title and description field has required attribute
     Then title input field has required attribute
     And description input field has required attribute
+
+  Scenario: User tries to create task without project
+    Given user tries to create task with title: "Test title" description: "Test description"
