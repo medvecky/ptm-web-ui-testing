@@ -82,6 +82,6 @@ Then('description input field has required attribute', async () => {
 
 Given('user tries to create task with title: {string} description: {string}',
     async (title: string, description: string) => {
-        return 'pending';
+        return createTaskPage.createTask(title, description);
     });
 

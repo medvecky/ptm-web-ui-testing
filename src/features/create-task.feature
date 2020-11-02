@@ -26,4 +26,6 @@ Feature: Create task
     And description input field has required attribute
 
   Scenario: User tries to create task without project
-    Given user tries to create task with title: "Test title" description: "Test description"
+    When user tries to create task with title: "Test title" description: "Test description"
+    And user waits for home page would load
+    Then the home page has been loaded
