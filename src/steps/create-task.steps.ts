@@ -1,11 +1,19 @@
-import {Given, Then} from "cucumber";
-import {navigateToCreateTaskPage, signInUserUsingApi} from "./CommonFunctions";
+import {Given, Then, When} from "cucumber";
+import {
+    createProject,
+    getTokenFromBrowserStorage,
+    navigateToCreateTaskPage,
+    signInUserUsingApi
+} from "./CommonFunctions";
 import {CreateTaskPage} from "../PageObjects/CreateTaskPage";
+import {TaskComponent} from "../PageObjects/TaskComponent";
+import {browser} from "protractor";
 
 const chai = require('chai').use(require('chai-as-promised'));
 const expect = chai.expect;
 
 const createTaskPage = new CreateTaskPage();
+const taskComponent = new TaskComponent();
 
 Given('user with username: {string} password: {string} signed in',
     async (username: string, password: string) => {
@@ -83,5 +91,35 @@ Then('description input field has required attribute', async () => {
 Given('user tries to create task with title: {string} description: {string}',
     async (title: string, description: string) => {
         return createTaskPage.createTask(title, description);
+    });
+
+When('user waits for task with title {string}', async (taskTitle: string) => {
+    return taskComponent.waitForCardTitleWithText(taskTitle);
+});
+
+Then('task has title {string}', async (expectedTaskTitle: string) => {
+    expect(await taskComponent.getTitleText()).to.equal(expectedTaskTitle);
+});
+
+Then('task has description {string}', async (expectedDescription: string) => {
+    expect(await taskComponent.getDescriptionText()).to.equal(expectedDescription);
+});
+
+Then('task has project title with text {string}', async (expectedProjectTitle: string) => {
+    expect(await taskComponent.getProjectTitleText()).to.equal(expectedProjectTitle);
+});
+
+Then('task has status {string}', async (expectedStatus: string) => {
+    expect(await taskComponent.getTaskStatus()).to.equal(expectedStatus);
+});
+
+Given('user creates project via api with title: {string} description: {string}',
+    async (title: string, description: string) => {
+        return createProject(title, description);
+    });
+
+When('user tries to create task with title: {string} description: {string} project: {string}',
+    async (title: string, description: string, project: string) => {
+        return createTaskPage.createTaskWithProject(title, description, project);
     });
 

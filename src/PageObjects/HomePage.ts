@@ -1,4 +1,4 @@
-import {browser, by, element, ElementFinder, promise, protractor, WebElementPromise} from "protractor";
+import { by, element, ElementFinder, promise} from "protractor";
 import {waitForElement} from "../steps/CommonFunctions";
 
 export class HomePage {

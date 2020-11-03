@@ -10,7 +10,7 @@ export function waitForElement(element: ElementFinder) {
         EC.visibilityOf(element), 10000, 'Element taking too long to appear in the DOM');
 }
 
-export function deleteUserWithContext(accessToken:string) {
+export function deleteUserWithContext(accessToken: string) {
     axios.delete('/tasks/all', {
         headers: {
             Authorization: 'Bearer ' + accessToken//the token is a variable which holds the token
@@ -87,7 +87,7 @@ export async function setTokenInBrowserStorage(token: string) {
 }
 
 
-export function hasCssClass (element: ElementFinder, cssClass: string): promise.Promise<boolean> {
+export function hasCssClass(element: ElementFinder, cssClass: string): promise.Promise<boolean> {
     return element.getAttribute('class').then(function (classes) {
         return classes.split(' ').indexOf(cssClass) !== -1;
     });
@@ -101,4 +101,18 @@ export async function navigateToCreateTaskPage() {
     return navigateToPage('http://localhost/#/new-task');
 }
 
+export function createProject(title, description) {
+    return axios.post('/projects', {
+        title: title,
+        description: description
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + SharedContext.accessToken
+        }
+    })
+        .then(function (response) {
+        })
+        .catch(function (error) {
+        });
+}
 

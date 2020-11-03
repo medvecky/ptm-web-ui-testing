@@ -3,6 +3,7 @@ Feature: Create task
   Background:
     Given user with username: "testuser1@gmail.com" password: "Password_12345"
     And user with username: "testuser1@gmail.com" password: "Password_12345" signed in
+    And user creates project via api with title: "Test Project" description: "Test project description"
     And user got to create task page
     And user waits for create task button
 
@@ -28,4 +29,19 @@ Feature: Create task
   Scenario: User tries to create task without project
     When user tries to create task with title: "Test title" description: "Test description"
     And user waits for home page would load
-    Then the home page has been loaded
+    And the home page has been loaded
+    And user waits for task with title "Test title"
+    Then task has title "Test title"
+    And task has description "Test description"
+    And task has project title with text "Add Project"
+    And task has status "OPEN"
+
+  Scenario: User tries to create task with project
+    When user tries to create task with title: "Test title" description: "Test description" project: "Test Project"
+    And user waits for home page would load
+    And the home page has been loaded
+    And user waits for task with title "Test title"
+    Then task has title "Test title"
+    And task has description "Test description"
+    And task has project title with text "Test Project"
+    And task has status "OPEN"

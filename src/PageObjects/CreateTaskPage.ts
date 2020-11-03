@@ -17,7 +17,7 @@ export class CreateTaskPage {
         this.descriptionLabel = element(by.css('label[for="formDescription"]'));
         this.descriptionInputFiled = element(by.id('formDescription'));
         this.projectLabel = element(by.css('label[for="formProject"]'));
-        this.projectSelectField = element(by.id('formProject'));
+        this.projectSelectField = element(by.css('option:nth-child(1)'));
     }
 
     isCreateTaskButtonPresent(): promise.Promise<boolean> {
@@ -92,6 +92,10 @@ export class CreateTaskPage {
         return this.descriptionInputFiled.sendKeys(description);
    }
 
+   setProject(projectName: string): promise.Promise<void> {
+        return element(by.cssContainingText('option', projectName)).click();
+   }
+
    pressCreateTaskButton(): promise.Promise<void> {
         return this.createTaskButton.click();
    }
@@ -100,5 +104,12 @@ export class CreateTaskPage {
         await this.setTitle(title);
         await this.setDescription(description);
         return this.pressCreateTaskButton();
+   }
+
+   async createTaskWithProject(title: string, description: string, project: string): Promise<void> {
+       await this.setTitle(title);
+       await this.setDescription(description);
+       await this.setProject(project);
+       return this.pressCreateTaskButton();
    }
 }
