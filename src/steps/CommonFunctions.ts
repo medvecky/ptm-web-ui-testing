@@ -101,6 +101,10 @@ export async function navigateToCreateTaskPage() {
     return navigateToPage('http://localhost/#/new-task');
 }
 
+export async function navigateToCreateProjectPage() {
+    return navigateToPage('http://localhost/#/new-project');
+}
+
 export function createProject(title, description) {
     return axios.post('/projects', {
         title: title,

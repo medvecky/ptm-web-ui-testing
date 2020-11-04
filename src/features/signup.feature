@@ -1,4 +1,4 @@
-Feature:
+Feature: Sign Up
 
   Background:
     Given sign up link on nav bar present

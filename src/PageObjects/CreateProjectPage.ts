@@ -1,0 +1,86 @@
+import {by, element, ElementFinder, promise} from "protractor";
+import {waitForElement} from "../steps/CommonFunctions";
+
+export class CreateProjectPage {
+    private createProjectButton: ElementFinder;
+    private titleLabel: ElementFinder;
+    private titleInputField: ElementFinder;
+    private descriptionLabel: ElementFinder;
+    private descriptionInputFiled: ElementFinder;
+
+    constructor() {
+        this.createProjectButton = element(by.cssContainingText('button', 'Create Project'));
+        this.titleLabel = element(by.css('label[for="formTitle"]'));
+        this.titleInputField = element(by.id('formTitle'));
+        this.descriptionLabel = element(by.css('label[for="formDescription"]'));
+        this.descriptionInputFiled = element(by.id('formDescription'));
+    }
+
+    isCreateProjectButtonPresent(): promise.Promise<boolean> {
+        return this.createProjectButton.isPresent();
+    }
+
+    waitForCreateProjectButton() {
+        return waitForElement(this.createProjectButton);
+    }
+
+    isTitleLabelPresent(): promise.Promise<boolean> {
+        return this.titleLabel.isPresent();
+    }
+
+    getTitleLabelText(): promise.Promise<string> {
+        return this.titleLabel.getText();
+    }
+
+    isTitleInputFieldPresent(): promise.Promise<boolean> {
+        return this.titleInputField.isPresent();
+    }
+
+    getTitleInputFieldPlaceholderText(): promise.Promise<string> {
+        return this.titleInputField.getAttribute('placeholder');
+    }
+
+    isDescriptionLabelPresent(): promise.Promise<boolean> {
+        return this.descriptionLabel.isPresent();
+    }
+
+    getDescriptionLabelText(): promise.Promise<string> {
+        return this.descriptionLabel.getText();
+    }
+
+    isDescriptionInputFieldPresent(): promise.Promise<boolean> {
+        return this.descriptionInputFiled.isPresent();
+    }
+
+    getDescriptionInputFieldPlaceholderText(): promise.Promise<string> {
+        return this.descriptionInputFiled.getAttribute('placeholder');
+    }
+
+    getTitleRequiredAttribute(): promise.Promise<string> {
+        return this.titleInputField.getAttribute('required');
+    }
+
+    getDescriptionRequiredAttribute(): promise.Promise<string> {
+        return this.descriptionInputFiled.getAttribute('required');
+    }
+
+    setTitle(title: string): promise.Promise<void> {
+        return this.titleInputField.sendKeys(title);
+    }
+
+    setDescription(description: string): promise.Promise<void> {
+        return this.descriptionInputFiled.sendKeys(description);
+    }
+
+    pressCreateProjectButton(): promise.Promise<void> {
+        return this.createProjectButton.click();
+    }
+
+    async createProject(title: string, description: string): Promise<void> {
+        await this.setTitle(title);
+        if (description) {
+            await this.setDescription(description);
+        }
+        return this.pressCreateProjectButton();
+    }
+}

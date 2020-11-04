@@ -21,7 +21,7 @@ export class TaskComponent {
     }
 
     waitForCardTitleWithText(taskTitle: string) {
-        return waitForElement(element(by.cssContainingText('a[class="card-title"]',taskTitle)));
+        return waitForElement(element(by.cssContainingText(this.taskTitleCssSelector,taskTitle)));
     }
 
     getTitleText(): promise.Promise<string> {
