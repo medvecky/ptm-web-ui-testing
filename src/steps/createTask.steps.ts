@@ -1,13 +1,11 @@
 import {Given, Then, When} from "cucumber";
 import {
     createProject,
-    getTokenFromBrowserStorage,
     navigateToCreateTaskPage,
     signInUserUsingApi
 } from "./CommonFunctions";
 import {CreateTaskPage} from "../PageObjects/CreateTaskPage";
 import {TaskComponent} from "../PageObjects/TaskComponent";
-import {browser} from "protractor";
 
 const chai = require('chai').use(require('chai-as-promised'));
 const expect = chai.expect;

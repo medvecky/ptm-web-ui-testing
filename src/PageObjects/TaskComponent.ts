@@ -47,4 +47,8 @@ export class TaskComponent {
     isDeleteButtonPresent(): promise.Promise<boolean> {
         return this.deleteButton.isPresent();
     }
+
+    clickOnTaskTitle(title: string): promise.Promise<void> {
+        return element(by.cssContainingText(this.taskTitleCssSelector, title)).click();
+    }
 }

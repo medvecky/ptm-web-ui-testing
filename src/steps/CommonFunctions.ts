@@ -105,10 +105,46 @@ export async function navigateToCreateProjectPage() {
     return navigateToPage('http://localhost/#/new-project');
 }
 
+export async function navigateToMainPage() {
+    return navigateToPage('http://localhost');
+}
+
 export function createProject(title, description) {
     return axios.post('/projects', {
         title: title,
         description: description
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + SharedContext.accessToken
+        }
+    })
+        .then(function (response) {
+            SharedContext.projectId = response.data.id;
+        })
+        .catch(function (error) {
+        });
+}
+
+export function createTask(title, description) {
+    return axios.post('/tasks', {
+        title: title,
+        description: description
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + SharedContext.accessToken
+        }
+    })
+        .then(function (response) {
+        })
+        .catch(function (error) {
+        });
+}
+
+export function createTaskWithProject(title, description) {
+    return axios.post('/tasks', {
+        title: title,
+        description: description,
+        projectId: SharedContext.projectId
     }, {
         headers: {
             Authorization: 'Bearer ' + SharedContext.accessToken

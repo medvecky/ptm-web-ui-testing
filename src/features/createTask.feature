@@ -7,7 +7,7 @@ Feature: Create task
     And user go to create task page
     And user waits for create task button
 
-  Scenario: All create task form elements present
+  Scenario:
     Then create task button present
     And task title label is present
     And task title label has text "Title"
