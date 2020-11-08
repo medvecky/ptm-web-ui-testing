@@ -45,4 +45,18 @@ export class EditTaskComponent {
     getStatusLabelText(): promise.Promise<string> {
         return this.statusLabel.getText();
     }
+
+    async setTitle(title: string): Promise<void> {
+        await this.titleInputField.clear();
+        return this.titleInputField.sendKeys(title);
+    }
+
+    async setDescription(description: string): Promise<void> {
+        await this.descriptionInputFiled.clear();
+        return this.descriptionInputFiled.sendKeys(description);
+    }
+
+    clickOnSaveChangesButton(): promise.Promise<void> {
+        return this.saveChangesButton.click();
+    }
  }

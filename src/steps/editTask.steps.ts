@@ -1,5 +1,5 @@
 import {Given, Then, When} from "cucumber";
-import {createTask, navigateToMainPage} from "./CommonFunctions";
+import {createTask, createTaskWithProject, navigateToMainPage} from "./CommonFunctions";
 import {TaskComponent} from "../PageObjects/TaskComponent";
 import {EditTaskComponent} from "../PageObjects/EditTaskComponent";
 
@@ -39,14 +39,30 @@ Then('task description input field has text {string}', async (expectedDescriptio
 });
 
 Then('task has status label', async () => {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+   expect(await editTaskComponent.isStatusLabelPresent()).to.equal(true);
 });
 
 Then('task status label has text {string}', async (expectedLabelText: string) => {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+   expect(await editTaskComponent.getStatusLabelText()).to.equal(expectedLabelText);
 });
+
+Given('user creates task via api with title: {string} description: {string} and project',
+    async (title: string, description: string) => {
+    return createTaskWithProject(title, description);
+});
+
+When('user clicks on save changes button', async () => {
+    return editTaskComponent.clickOnSaveChangesButton();
+});
+
+When('user sets task title to {string}', async (title: string) => {
+    return editTaskComponent.setTitle(title);
+});
+
+When('user sets task description to {string}', async (description: string) => {
+    return editTaskComponent.setDescription(description);
+});
+
 
 
 
