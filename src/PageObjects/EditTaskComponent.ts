@@ -18,7 +18,7 @@ export class EditTaskComponent {
         this.descriptionLabel = element(by.css('label[for="formDescription"]'));
         this.descriptionInputFiled = element(by.id('formDescription'));
         this.statusLabel = element(by.css('label[for="formStatus"]'));
-        this.projectLabel = element(by.css('label[for="formStatus"]'));
+        this.projectLabel = element(by.css('label[for="formProject"]'));
         this. saveChangesButton = element(by.cssContainingText('button', 'Save changes'));
     }
 

@@ -5,6 +5,7 @@ export class TaskComponent {
     private taskTitleCssSelector: string;
     private taskDescription: ElementFinder;
     private taskTitle: ElementFinder;
+    private projectTitleCssSelector: string;
     private projectTitle: ElementFinder;
     private projectStatus: ElementFinder;
     private changeStatusButton: ElementFinder;
@@ -14,7 +15,8 @@ export class TaskComponent {
         this.taskTitleCssSelector = 'a[class="card-title"]';
         this.taskTitle = element(by.css(this.taskTitleCssSelector));
         this.taskDescription = element(by.css('div.card-body > p.card-text:nth-child(2)'));
-        this.projectTitle = element(by.css('div.card-body > a.card-text'));
+        this.projectTitleCssSelector = 'div.card-body > a.card-text';
+        this.projectTitle = element(by.css(this.projectTitleCssSelector));
         this.projectStatus = element(by.css('div.card-body > p.card-text:nth-child(4)'));
         this.changeStatusButton = element(by.cssContainingText('button', 'Change Status'));
         this.deleteButton = element(by.cssContainingText('button', 'Delete'));
@@ -48,7 +50,11 @@ export class TaskComponent {
         return this.deleteButton.isPresent();
     }
 
-    clickOnTaskTitle(title: string): promise.Promise<void> {
-        return element(by.cssContainingText(this.taskTitleCssSelector, title)).click();
+    clickOnTaskTitle(taskTitle: string): promise.Promise<void> {
+        return element(by.cssContainingText(this.taskTitleCssSelector, taskTitle)).click();
+    }
+
+    clickOnProjectWithTitle(projectTitle: string): promise.Promise<void> {
+        return element(by.cssContainingText(this.projectTitleCssSelector, projectTitle)).click();
     }
 }
