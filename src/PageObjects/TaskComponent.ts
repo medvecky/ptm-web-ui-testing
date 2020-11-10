@@ -7,7 +7,7 @@ export class TaskComponent {
     private taskTitle: ElementFinder;
     private projectTitleCssSelector: string;
     private projectTitle: ElementFinder;
-    private projectStatus: ElementFinder;
+    private taskStatus: ElementFinder;
     private changeStatusButton: ElementFinder;
     private deleteButton: ElementFinder;
 
@@ -17,7 +17,7 @@ export class TaskComponent {
         this.taskDescription = element(by.css('div.card-body > p.card-text:nth-child(2)'));
         this.projectTitleCssSelector = 'div.card-body > a.card-text';
         this.projectTitle = element(by.css(this.projectTitleCssSelector));
-        this.projectStatus = element(by.css('div.card-body > p.card-text:nth-child(4)'));
+        this.taskStatus = element(by.css('div.card-body > p.card-text:nth-child(4)'));
         this.changeStatusButton = element(by.cssContainingText('button', 'Change Status'));
         this.deleteButton = element(by.cssContainingText('button', 'Delete'));
     }
@@ -39,7 +39,7 @@ export class TaskComponent {
     }
 
     getTaskStatus(): promise.Promise<string> {
-        return this.projectStatus.getText();
+        return this.taskStatus.getText();
     }
 
     isChangeStatusButtonPresent(): promise.Promise<boolean> {

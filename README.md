@@ -11,14 +11,14 @@ start SUT
 * ptm-react-web-client, description in documentation:
   [ptm-react-web-client/README](https://github.com/medvecky/ptm-react-web-client/blob/master/README.md)
   
-Install dependencies
+### Install dependencies
 
 ```bash
 npm install
 npm run webdriver-update
 ```   
 
-run tests 
+### run tests 
 
 ```bash
   npm test
