@@ -8,6 +8,8 @@ export class TaskComponent {
     private projectTitleCssSelector: string;
     private projectTitle: ElementFinder;
     private taskStatus: ElementFinder;
+    private beginDate: ElementFinder;
+    private endDate: ElementFinder;
     private changeStatusButton: ElementFinder;
     private deleteButton: ElementFinder;
 
@@ -20,6 +22,8 @@ export class TaskComponent {
         this.taskStatus = element(by.css('div.card-body > p.card-text:nth-child(4)'));
         this.changeStatusButton = element(by.cssContainingText('button', 'Change Status'));
         this.deleteButton = element(by.cssContainingText('button', 'Delete'));
+        this.beginDate =  element((by.css('div.card-body > p.card-text:nth-child(5)')));
+        this.endDate =  element((by.css('div.card-body > p.card-text:nth-child(6)')));
     }
 
     waitForCardTitleWithText(taskTitle: string) {
@@ -57,4 +61,20 @@ export class TaskComponent {
     clickOnProjectWithTitle(projectTitle: string): promise.Promise<void> {
         return element(by.cssContainingText(this.projectTitleCssSelector, projectTitle)).click();
     }
-}
+
+    isBeginDatePresent(): promise.Promise<boolean> {
+        return this.beginDate.isPresent();
+    }
+
+    isEndDatePresent(): promise.Promise<boolean> {
+        return this.endDate.isPresent();
+    }
+
+    getBeginDateText(): promise.Promise<string> {
+        return this.beginDate.getText();
+    }
+
+    getEndDateText(): promise.Promise<string> {
+        return this.endDate.getText();
+    }
+ }
