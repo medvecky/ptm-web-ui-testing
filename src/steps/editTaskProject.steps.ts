@@ -19,3 +19,17 @@ Then('edited task has status {string}', async (expectedStatus: string) => {
 When('user set project to {string}', async (projectTitle: string) =>  {
    return editTaskProjectComponent.setProject(projectTitle);
 });
+
+Then('task has correct begin date', async () => {
+   expect(await taskComponent.getBeginDateText())
+       .to
+       .equal('Begin: ' +
+           new Date().toISOString().split('T')[0]);
+});
+
+Then('task has correct end date', async () => {
+    expect(await taskComponent.getEndDateText())
+        .to
+        .equal('End: ' +
+            new Date().toISOString().split('T')[0]);
+});

@@ -77,4 +77,8 @@ export class TaskComponent {
     getEndDateText(): promise.Promise<string> {
         return this.endDate.getText();
     }
+
+    clickOnChangeStatusButton(): promise.Promise<void> {
+        return this.changeStatusButton.click();
+    }
  }
