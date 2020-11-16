@@ -63,6 +63,14 @@ When('user sets task description to {string}', async (description: string) => {
     return editTaskComponent.setDescription(description);
 });
 
+When('user clicks on delete button', async () => {
+    return taskComponent.clickOnDeleteButton();
+});
+
+Then('task with title {string} not present', async (expectedTitle: string) => {
+    expect(await taskComponent.isTitlePresent(expectedTitle)).to.equal(false);
+});
+
 
 
 

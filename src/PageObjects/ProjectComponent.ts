@@ -12,7 +12,7 @@ export class ProjectComponent {
         this.projectTitleCssSelector = 'div[class="card-title h5"]';
         this.projectTitle = element(by.css(this.projectTitleCssSelector));
         this.projectDescription = element(by.css('div.card-body > p.card-text:nth-child(2)'));
-        this.editButton = element(by.cssContainingText('button', 'Edit'));
+        this.editButton = element(by.cssContainingText('a', 'Edit'));
         this.deleteButton = element(by.cssContainingText('button', 'Delete'));
     }
 
@@ -35,5 +35,17 @@ export class ProjectComponent {
 
     isDeleteButtonPresent(): promise.Promise<boolean> {
         return this.deleteButton.isPresent();
+    }
+
+    clickOnEditButton(): promise.Promise<void> {
+        return this.editButton.click();
+    }
+
+    clickOnDeleteButton(): promise.Promise<void> {
+        return this.deleteButton.click();
+    }
+
+    isTitlePresent(title: string): promise.Promise<boolean> {
+        return this.projectTitle.isPresent();
     }
 }

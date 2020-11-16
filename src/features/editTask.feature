@@ -107,3 +107,12 @@ Feature: Edit task
     And task has description "New Task description"
     And task has project title with text "Add Project"
     And task has status "OPEN"
+
+  Scenario: User deletes task
+    Given user creates task via api with title: "Test Task" description: "Test Task description" and project
+    And user go to main page
+    And user waits for home page would load
+    And user waits for task with title "Test Task"
+    When user clicks on delete button
+    Then user waits for home page would load
+    And task with title "Test Task" not present

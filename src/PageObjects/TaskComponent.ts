@@ -81,4 +81,12 @@ export class TaskComponent {
     clickOnChangeStatusButton(): promise.Promise<void> {
         return this.changeStatusButton.click();
     }
+
+    clickOnDeleteButton(): promise.Promise<void> {
+        return this.deleteButton.click();
+    }
+
+    isTitlePresent(expectedTitle: string): promise.Promise<boolean> {
+        return element(by.cssContainingText(this.taskTitleCssSelector, expectedTitle)).isPresent();
+    }
  }
