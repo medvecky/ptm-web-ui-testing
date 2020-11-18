@@ -48,4 +48,8 @@ export class ProjectComponent {
     isTitlePresent(title: string): promise.Promise<boolean> {
         return this.projectTitle.isPresent();
     }
+
+    clickOnTitleText(titleText: string): promise.Promise<void> {
+        return element(by.cssContainingText(this.projectTitleCssSelector, titleText)).click();
+    }
 }

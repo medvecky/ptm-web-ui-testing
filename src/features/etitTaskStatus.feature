@@ -27,7 +27,7 @@ Feature: Edit task status
     And edit task status select has text "OPEN"
     And user sets task status to "IN_PROGRESS"
     And user clicks on save changes button
-    And user waits for home page would load
+    And user waits for change status button
     Then task has title "Test Task"
     And task has description "Test Task description"
     And task has project title with text "Add Project"
@@ -49,7 +49,7 @@ Feature: Edit task status
     And user waits for save changes button
     And user sets task status to "DONE"
     And user clicks on save changes button
-    And user waits for task with title "Test Task"
+    And user waits for change status button
     Then task has title "Test Task"
     And task has description "Test Task description"
     And task has project title with text "Add Project"

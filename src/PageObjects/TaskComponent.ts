@@ -89,4 +89,8 @@ export class TaskComponent {
     isTitlePresent(expectedTitle: string): promise.Promise<boolean> {
         return element(by.cssContainingText(this.taskTitleCssSelector, expectedTitle)).isPresent();
     }
+
+    waitForChangeStatusButton() {
+        return waitForElement(this.changeStatusButton);
+    }
  }

@@ -28,3 +28,8 @@ When('user sets task status to {string}', async (status: string) => {
     return changeTaskStatusComponent.setStatus(status);
 });
 
+When('user waits for change status button', async () => {
+    return taskComponent.waitForChangeStatusButton();
+});
+
+
