@@ -50,6 +50,13 @@ When('user clicks on new task link', async () => {
     return navBarSignedIn.clickOnTaskLink();
 });
 
+Then('sign out button present', async () => {
+    expect(await navBarSignedIn.isSignOutButtonPresent()).to.equal(true);
+});
+
+When('user clicks on sign out button', async () => {
+    return navBarSignedIn.clickOnSignOutButton();
+});
 
 
 

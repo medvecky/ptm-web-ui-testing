@@ -55,4 +55,11 @@ export class NavBarSignedIn {
         return this.newProjectLink.click();
     }
 
+    isSignOutButtonPresent(): promise.Promise<boolean> {
+        return this.signOutButton.isPresent();
+    }
+
+    clickOnSignOutButton(): promise.Promise<void> {
+        return this.signOutButton.click();
+    }
 }

@@ -22,6 +22,4 @@ npm run webdriver-update
 
 ```bash
   npm test
-  #Show allure reports  
-  allure serve ./out/allure-results
 ```

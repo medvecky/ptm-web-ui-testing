@@ -12,6 +12,7 @@ Feature: Nav bar signed in
     And nav bar home link is active
     And nav bar new task link present
     And nav bar new project link present
+    And sign out button present
 
   Scenario: User clicks on new task link
     When user clicks on new task link
@@ -34,3 +35,8 @@ Feature: Nav bar signed in
     And user waits for home page would load
     Then nav bar home link is active
     And nav bar new project link is not active
+
+    Scenario: User signs out
+      When user clicks on sign out button
+      And user waits for sign in button
+      Then Sign In button present
